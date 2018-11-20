@@ -372,7 +372,8 @@ class TopTabsTestIpad: IpadOnlyTestCase {
         waitForExistence(app.buttons["Show Tabs"])
         let numTabAfterRemovingThirdTab = app.buttons["Show Tabs"].value as? String
         XCTAssertEqual("2", numTabAfterRemovingThirdTab)
-        app.collectionViews["Top Tabs View"].children(matching: .cell).matching(identifier: "home").element(boundBy: 1).buttons["Remove page — Open New Tab"].tap()
+        print(app.debugDescription)
+        app.collectionViews["Top Tabs View"].children(matching: .cell).element(boundBy: 1).buttons["Remove page — Open New Tab"].tap()
         waitForExistence(app.buttons["Show Tabs"])
         let numTabAfterRemovingSecondTab = app.buttons["Show Tabs"].value as? String
         XCTAssertEqual("1", numTabAfterRemovingSecondTab)
