@@ -66,6 +66,7 @@ protocol TabEventHandler {
     func tabDidLoseFocus(_ tab: Tab)
     func tabDidClose(_ tab: Tab)
     func tabDidChangeContentBlockerStatus(_ tab: Tab)
+    func tab(_ tab: Tab, didDeriveMetadata metadata: DerivedMetadata)
 }
 
 // Provide default implmentations, because we don't want to litter the code with
@@ -78,6 +79,7 @@ extension TabEventHandler {
     func tabDidLoseFocus(_ tab: Tab) {}
     func tabDidClose(_ tab: Tab) {}
     func tabDidChangeContentBlockerStatus(_ tab: Tab) {}
+    func tab(_ tab: Tab, didDeriveMetadata metadata: DerivedMetadata) {}
 }
 
 enum TabEventLabel: String {
@@ -88,6 +90,7 @@ enum TabEventLabel: String {
     case didLoseFocus
     case didClose
     case didChangeContentBlocking
+    case didDeriveMetadata
 }
 
 enum TabEvent {
@@ -98,6 +101,7 @@ enum TabEvent {
     case didLoseFocus
     case didClose
     case didChangeContentBlocking
+    case didDeriveMetadata(DerivedMetadata)
 
     var label: TabEventLabel {
         switch self {
@@ -115,6 +119,8 @@ enum TabEvent {
             return .didClose
         case .didChangeContentBlocking:
             return .didChangeContentBlocking
+        case .didDeriveMetadata:
+            return .didDeriveMetadata
         }
     }
 
@@ -134,6 +140,8 @@ enum TabEvent {
             handler.tabDidClose(tab)
         case .didChangeContentBlocking:
             handler.tabDidChangeContentBlockerStatus(tab)
+        case .didDeriveMetadata(let metadata):
+            handler.tab(tab, didDeriveMetadata: metadata)
         }
     }
 }
