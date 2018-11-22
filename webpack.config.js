@@ -6,7 +6,7 @@ const AllFramesAtDocumentStart = glob.sync("./Client/Frontend/UserContent/UserSc
 const AllFramesAtDocumentEnd = glob.sync("./Client/Frontend/UserContent/UserScripts/AllFrames/AtDocumentEnd/*.js");
 const MainFrameAtDocumentStart = glob.sync("./Client/Frontend/UserContent/UserScripts/MainFrame/AtDocumentStart/*.js");
 const MainFrameAtDocumentEnd = glob.sync("./Client/Frontend/UserContent/UserScripts/MainFrame/AtDocumentEnd/*.js");
-const DocumentServices = glob.sync("./Client/Frontend/UserContent/UserScripts/DocumentServices/*.js");
+const DocumentServices = glob.sync("./Client/Frontend/UserContent/UserScripts/DocumentServices/src/*.js");
 
 // Ensure the first script loaded at document start is __firefox__.js
 // since it defines the `window.__firefox__` global.
